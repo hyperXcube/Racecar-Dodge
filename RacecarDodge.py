@@ -48,8 +48,8 @@ def message(s, font, y, color = black):
     display.blit(text, text.get_rect(center = (dispWD / 2, dispHT / 2 + y)))
 
 # adds text with color background to display
-def button(s, color, center):
-    rect = pygame.Rect(0, 0, 150, 100)
+def button(s, color, center, width = 150):
+    rect = pygame.Rect(0, 0, width, 100)
     rect.center = center
     pygame.draw.rect(display, color, rect)
 
@@ -149,6 +149,7 @@ def gameMain():
                 message('You Crashed', nosifer, -50, red)
 
             restartRect = button('Restart', green, (dispWD / 4, dispHT * 3 / 4))
+            startRect = button('Back to start', blue, (dispWD / 2, dispHT * 3 / 4), 200)
             quitRect = button('Quit', red, (dispWD * 3 / 4, dispHT * 3 / 4))
 
             pygame.display.update()
@@ -163,6 +164,8 @@ def gameMain():
                         mouse = pygame.mouse.get_pos()
                         if restartRect.collidepoint(mouse):
                             gameMain()
+                        elif startRect.collidepoint(mouse):
+                            gameStart()
                         elif quitRect.collidepoint(mouse):
                             end()
                     elif event.type == pygame.KEYUP and event.key in [pygame.K_RETURN, pygame.K_SPACE]:
