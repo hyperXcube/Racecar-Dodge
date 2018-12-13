@@ -23,15 +23,15 @@ def crash(score, carChange):
             if event.type == pygame.QUIT:
                 end()
             elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_LEFT:
-                    carChange -= 4
-                elif event.key == pygame.K_RIGHT:
-                    carChange += 4
+                if event.key == shelf['controls'][0]:
+                    carChange -= 3
+                elif event.key == shelf['controls'][1]:
+                    carChange += 3
             elif event.type == pygame.KEYUP:
-                if event.key == pygame.K_LEFT:
-                    carChange += 4
-                elif event.key == pygame.K_RIGHT:
-                    carChange -= 4
+                if event.key == shelf['controls'][0]:
+                    carChange += 3
+                elif event.key == shelf['controls'][1]:
+                    carChange -= 3
             elif event.type == pygame.MOUSEBUTTONUP:
                 mouse = pygame.mouse.get_pos()
                 if restartRect.collidepoint(mouse):

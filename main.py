@@ -7,7 +7,7 @@ from constants import *
 def gameMain(carChange):
     dodged = 0
     carX = (dispWD - carWD) / 2
-    carSpeed = 4
+    carSpeed = 3
 
     rectX = random.randrange(0, dispWD - 100)
     rectY = -500
@@ -18,14 +18,14 @@ def gameMain(carChange):
             if event.type == pygame.QUIT:
                 end()
             elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_LEFT:
+                if event.key == shelf['controls'][0]:
                     carChange -= int(carSpeed)
-                elif event.key == pygame.K_RIGHT:
+                elif event.key == shelf['controls'][1]:
                     carChange += int(carSpeed)
             elif event.type == pygame.KEYUP:
-                if event.key == pygame.K_LEFT:
+                if event.key == shelf['controls'][0]:
                     carChange += int(carSpeed)
-                elif event.key == pygame.K_RIGHT:
+                elif event.key == shelf['controls'][1]:
                     carChange -= int(carSpeed)
                     
         carX += carChange
@@ -45,7 +45,7 @@ def gameMain(carChange):
 
         # when user crashes
         if carX < 0 - carWD / 2 or carX > dispWD - carWD / 2 or (dispHT - 105 - carHT < rectY < dispHT and carX - 97 < rectX < carX + carWD - 3):
-            button, carChange = crash(dodged, carChange / int(carSpeed) * 4)
+            button, carChange = crash(dodged, carChange / int(carSpeed) * 3)
             if button == crashButton.restart:
                 gameMain(carChange)
                 return carChange
