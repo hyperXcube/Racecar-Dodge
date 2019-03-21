@@ -33,7 +33,6 @@ def settings(carChange):
                 for ctrl in ctrlRects.keys():
                     if ctrlRects[ctrl].collidepoint(mouse):
                         shelf['controls'] = ctrl
-                        print(ctrl)
 
         display.fill(white)
 

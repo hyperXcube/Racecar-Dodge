@@ -44,7 +44,7 @@ def gameMain(carChange):
         clock.tick(60)
 
         # when user crashes
-        if carX < 0 - carWD / 2 or carX > dispWD - carWD / 2 or (dispHT - 105 - carHT < rectY < dispHT and carX - 97 < rectX < carX + carWD - 3):
+        if carX < 0 or carX > dispWD or (dispHT - 105 - carHT < rectY < dispHT and carX - 97 < rectX < carX + carWD - 3):
             button, carChange = crash(dodged, carChange / int(carSpeed) * 3)
             if button == crashButton.restart:
                 gameMain(carChange)

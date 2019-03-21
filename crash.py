@@ -2,6 +2,7 @@ import pygame
 from functions import *
 from constants import *
 
+# code to run when user crashes
 def crash(score, carChange):
     if score > shelf['record']:
         shelf['record'] = score
