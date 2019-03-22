@@ -3,7 +3,7 @@ from functions import *
 from constants import *
 
 # code to run when user crashes
-def crash(score, carChange):
+def crash(score):
     if score > shelf['record']:
         shelf['record'] = score
         message('New Record!!', lobsterL, -50, blue)
@@ -23,25 +23,15 @@ def crash(score, carChange):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 end()
-            elif event.type == pygame.KEYDOWN:
-                if event.key == shelf['controls'][0]:
-                    carChange -= 3
-                elif event.key == shelf['controls'][1]:
-                    carChange += 3
-            elif event.type == pygame.KEYUP:
-                if event.key == shelf['controls'][0]:
-                    carChange += 3
-                elif event.key == shelf['controls'][1]:
-                    carChange -= 3
             elif event.type == pygame.MOUSEBUTTONUP:
                 mouse = pygame.mouse.get_pos()
                 if restartRect.collidepoint(mouse):
-                    return crashButton.restart, carChange
+                    return crashButton.restart
                 elif homeRect.collidepoint(mouse):
-                    return crashButton.home, carChange
+                    return crashButton.home
                 elif quitRect.collidepoint(mouse):
                     end()
             elif event.type == pygame.KEYUP and event.key in [pygame.K_RETURN, pygame.K_SPACE]:
-                return crashButton.restart, carChange
+                return crashButton.restart
 
             clock.tick(10)

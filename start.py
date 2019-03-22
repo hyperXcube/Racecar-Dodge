@@ -7,7 +7,7 @@ from constants import *
 pygame.init()
 
 # start page
-def gameStart(carChange):
+def gameStart():
     display.fill(white)
 
     message('Racecar Dodge', lobsterL, -75)
@@ -24,28 +24,19 @@ def gameStart(carChange):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 end()
-            elif event.type == pygame.KEYDOWN:
-                if event.key == shelf['controls'][0]:
-                    carChange -= 3
-                elif event.key == shelf['controls'][1]:
-                    carChange += 3
             elif event.type == pygame.KEYUP:
-                if event.key == shelf['controls'][0]:
-                    carChange += 3
-                elif event.key == shelf['controls'][1]:
-                    carChange -= 3
-                carChange = gameMain(carChange)
-                gameStart(carChange)
+                gameMain()
+                gameStart()
             elif event.type ==  pygame.MOUSEBUTTONUP:
                 mouse = pygame.mouse.get_pos()
                 if gearRect.collidepoint(mouse):
-                    settings(carChange)
-                    gameStart(carChange)
+                    settings()
+                    gameStart()
 
         clock.tick(10)
 
 if 'record' not in shelf.keys():
     shelf['record'] = 0
     shelf['rectColor'] = black
-    shelf['controls'] = arrowCtrl
-gameStart(0)
+
+gameStart()

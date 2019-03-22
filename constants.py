@@ -43,9 +43,8 @@ car = pygame.image.load(r'Images\racecar.png')
 carWD, carHT = car.get_size()
 
 # keypad controls
-arrowCtrl = (pygame.K_LEFT, pygame.K_RIGHT)
-wasdCtrl = (pygame.K_a, pygame.K_d)
-controls = {'Arrow Keys': arrowCtrl, 'WASD': wasdCtrl}
+left = (pygame.K_LEFT, pygame.K_a)
+right = (pygame.K_RIGHT, pygame.K_d)
 
 # user data from shelve
 shelf = shelve.open('data')

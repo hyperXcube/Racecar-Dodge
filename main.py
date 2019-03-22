@@ -4,10 +4,11 @@ from functions import end
 from constants import *
 
 # main game loop 
-def gameMain(carChange):
+def gameMain():
     dodged = 0
     carX = (dispWD - carWD) / 2
     carSpeed = 3
+    keys = {'left':False, 'right':False}
 
     rectX = random.randrange(0, dispWD - 100)
     rectY = -500
@@ -18,17 +19,20 @@ def gameMain(carChange):
             if event.type == pygame.QUIT:
                 end()
             elif event.type == pygame.KEYDOWN:
-                if event.key == shelf['controls'][0]:
-                    carChange -= int(carSpeed)
-                elif event.key == shelf['controls'][1]:
-                    carChange += int(carSpeed)
+                if event.key in left:
+                    keys['left'] = True
+                elif event.key in right:
+                    keys['right'] = True
             elif event.type == pygame.KEYUP:
-                if event.key == shelf['controls'][0]:
-                    carChange += int(carSpeed)
-                elif event.key == shelf['controls'][1]:
-                    carChange -= int(carSpeed)
+                if event.key in left:
+                    keys['left'] = False
+                elif event.key in right:
+                    keys['right'] = False
                     
-        carX += carChange
+        if keys['left']:
+            carX -= int(carSpeed)
+        if keys['right']:
+            carX += int(carSpeed) 
         rectY += rectSpeed
 
         display.fill(white)
@@ -45,12 +49,12 @@ def gameMain(carChange):
 
         # when user crashes
         if carX < 0 or carX > dispWD or (dispHT - 105 - carHT < rectY < dispHT and carX - 97 < rectX < carX + carWD - 3):
-            button, carChange = crash(dodged, carChange / int(carSpeed) * 3)
+            button = crash(dodged)
             if button == crashButton.restart:
-                gameMain(carChange)
-                return carChange
+                gameMain()
+                return
             elif button == crashButton.home:
-                return carChange
+                return
 
         if rectY > dispHT:
             dodged += 1
@@ -59,9 +63,4 @@ def gameMain(carChange):
             rectY = -100
             rectSpeed += 1
 
-            if int(carSpeed + 0.4) != int(carSpeed):
-                if carChange > 0:
-                    carChange += 1
-                elif carChange < 0:
-                    carChange -= 1
             carSpeed += 0.4

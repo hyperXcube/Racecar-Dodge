@@ -9,7 +9,7 @@ options = {'packages':['pygame', 'dbm'],
 
 setup(
     name = 'Racecar Dodge',
-    description = 'Use your racecar to dodge obstacles and try to get as many blocks dodged as possible!',
+    description = 'Use your racecar to dodge as many obstacles as possible!',
     options = {'build_exe': options},
     executables = [Executable('start.py', icon = 'carIcon.ico', targetName = 'Racecar Dodge.exe')]
 )
