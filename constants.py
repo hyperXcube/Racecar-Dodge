@@ -42,9 +42,5 @@ clock = pygame.time.Clock()
 car = pygame.image.load(r'Images\racecar.png')
 carWD, carHT = car.get_size()
 
-# keypad controls
-left = (pygame.K_LEFT, pygame.K_a)
-right = (pygame.K_RIGHT, pygame.K_d)
-
 # user data from shelve
 shelf = shelve.open('data')

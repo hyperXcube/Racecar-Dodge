@@ -20,6 +20,8 @@ def settings():
                 for color in colorRects.keys():
                     if colorRects[color].collidepoint(mouse):
                         shelf['rectColor'] = color
+            elif event.type == pygame.KEYUP and event.key == pygame.K_ESCAPE:
+                return
 
         display.fill(white)
 

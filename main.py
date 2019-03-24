@@ -8,7 +8,7 @@ def gameMain():
     dodged = 0
     carX = (dispWD - carWD) / 2
     carSpeed = 3
-    keys = {'left':False, 'right':False}
+    keys = {'left':[False, False], 'right':[False, False]}
 
     rectX = random.randrange(0, dispWD - 100)
     rectY = -500
@@ -19,22 +19,30 @@ def gameMain():
             if event.type == pygame.QUIT:
                 end()
             elif event.type == pygame.KEYDOWN:
-                if event.key in left:
-                    keys['left'] = True
-                elif event.key in right:
-                    keys['right'] = True
+                if event.key == pygame.K_LEFT:
+                    keys['left'][0] = True
+                elif event.key == pygame.K_a:
+                    keys['left'][1] = True
+                elif event.key == pygame.K_RIGHT:
+                    keys['right'][0] = True
+                elif event.key == pygame.K_d:
+                    keys['right'][1] = True
             elif event.type == pygame.KEYUP:
-                if event.key in left:
-                    keys['left'] = False
-                elif event.key in right:
-                    keys['right'] = False
+                if event.key == pygame.K_LEFT:
+                    keys['left'][0] = False
+                elif event.key == pygame.K_a:
+                    keys['left'][1] = False
+                elif event.key == pygame.K_RIGHT:
+                    keys['right'][0] = False
+                elif event.key == pygame.K_d:
+                    keys['right'][1] = False
                     
-        if keys['left']:
+        if keys['left'][0] or keys['left'][1]:
             carX -= int(carSpeed)
-        if keys['right']:
+        if keys['right'][0] or keys['right'][1]:
             carX += int(carSpeed) 
         rectY += rectSpeed
-
+        
         display.fill(white)
 
         display.blit(car, (carX, dispHT - 5 - carHT))
@@ -56,6 +64,7 @@ def gameMain():
             elif button == crashButton.home:
                 return
 
+        # when user dodges obstacle
         if rectY > dispHT:
             dodged += 1
 

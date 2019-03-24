@@ -4,8 +4,6 @@ from main import gameMain
 from functions import *
 from constants import *
 
-pygame.init()
-
 # start page
 def gameStart():
     display.fill(white)
