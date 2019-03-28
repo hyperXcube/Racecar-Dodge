@@ -1,10 +1,13 @@
 import pygame, random
 from crash import crash
+from pause import pause
 from functions import end
 from constants import *
 
-# main game loop 
-def gameMain():
+# Main Game loop
+# Todo: maybe make car move up/down
+
+def main():
     dodged = 0
     carX = (dispWD - carWD) / 2
     carSpeed = 3
@@ -36,7 +39,16 @@ def gameMain():
                     keys['right'][0] = False
                 elif event.key == pygame.K_d:
                     keys['right'][1] = False
-                    
+                elif event.key == pygame.K_ESCAPE:
+                    # Paused
+                    btnClicked = pause()
+                    if btnClicked == crashButton.restart:
+                        main()
+                        return
+                    elif btnClicked == crashButton.home:
+                        return
+                    keys = {'left':[False, False], 'right':[False, False]}
+
         if keys['left'][0] or keys['left'][1]:
             carX -= int(carSpeed)
         if keys['right'][0] or keys['right'][1]:
@@ -55,16 +67,16 @@ def gameMain():
         pygame.display.update()
         clock.tick(60)
 
-        # when user crashes
-        if carX < 0 or carX > dispWD or (dispHT - 105 - carHT < rectY < dispHT and carX - 97 < rectX < carX + carWD - 3):
-            button = crash(dodged)
-            if button == crashButton.restart:
-                gameMain()
+        # When user crashes
+        if carX < -10 or carX > dispWD - carWD + 10 or (dispHT - 105 - carHT < rectY < dispHT and carX - 97 < rectX < carX + carWD - 3):
+            btnClicked = crash(dodged)
+            if btnClicked == crashButton.restart:
+                main()
                 return
-            elif button == crashButton.home:
+            elif btnClicked == crashButton.home:
                 return
 
-        # when user dodges obstacle
+        # When user dodges obstacle
         if rectY > dispHT:
             dodged += 1
 

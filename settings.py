@@ -1,8 +1,9 @@
 import pygame
-from functions import *
+from functions import end
 from constants import *
 
-# settings page
+# Settings Page
+
 def settings():
     colorRects = {}
 

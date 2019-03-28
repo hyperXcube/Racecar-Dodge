@@ -1,11 +1,12 @@
 import pygame, shelve
 from settings import settings
-from main import gameMain
-from functions import *
+from main import main
+from functions import message, end
 from constants import *
 
-# start page
-def gameStart():
+# Start Page
+
+def start():
     display.fill(white)
 
     message('Racecar Dodge', lobsterL, -75)
@@ -23,13 +24,13 @@ def gameStart():
             if event.type == pygame.QUIT:
                 end()
             elif event.type == pygame.KEYUP:
-                gameMain()
-                gameStart()
+                main()
+                start()
             elif event.type ==  pygame.MOUSEBUTTONUP:
                 mouse = pygame.mouse.get_pos()
                 if gearRect.collidepoint(mouse):
                     settings()
-                    gameStart()
+                    start()
 
         clock.tick(10)
 
@@ -37,4 +38,4 @@ if 'record' not in shelf.keys():
     shelf['record'] = 0
     shelf['rectColor'] = black
 
-gameStart()
+start()

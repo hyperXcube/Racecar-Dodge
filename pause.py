@@ -2,17 +2,12 @@ import pygame
 from functions import *
 from constants import *
 
-# Crash Page
+# Pause Page
+# ? It is possible to combine this function with crash()?
 
-def crash(score):
-    if score > shelf['record']:
-        shelf['record'] = score
-        message('New Record!!', lobsterL, -50, blue)
-        pygame.draw.rect(display, white, (dispWD / 2, 3, dispWD / 2, 43))
-        record = lobsterS.render('Record: ' + str(shelf['record']), True, blue)
-        display.blit(record, record.get_rect(topright=(dispWD - 3, 3)))
-    else:
-        message('You Crashed', nosifer, -50, red)
+def pause():
+    message('Paused', lobsterL, -75)
+    message('Press any key to continue', lobsterS, 0)
 
     restartRect, homeRect, quitRect = buttons()
 
@@ -30,7 +25,7 @@ def crash(score):
                     return crashButton.home
                 elif quitRect.collidepoint(mouse):
                     end()
-            elif event.type == pygame.KEYUP and event.key in [pygame.K_RETURN, pygame.K_SPACE]:
-                return crashButton.restart
+            elif event.type == pygame.KEYUP and event.key not in [pygame.K_a, pygame.K_d, pygame.K_LEFT, pygame.K_RIGHT]:
+                return
 
             clock.tick(10)

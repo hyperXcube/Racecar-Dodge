@@ -22,3 +22,11 @@ def button(s, color, center, width = 150):
     display.blit(text, text.get_rect(center = center))
 
     return rect
+
+# function to make buttons used in crash() and pause()
+def buttons():
+    restartRect = button('Restart', green, (dispWD / 4, dispHT * 3 / 4))
+    homeRect = button('Back to home', blue, (dispWD / 2, dispHT * 3 / 4), 200)
+    quitRect = button('Quit', red, (dispWD * 3 / 4, dispHT * 3 / 4))
+
+    return restartRect, homeRect, quitRect
