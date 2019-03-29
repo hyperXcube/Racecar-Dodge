@@ -14,7 +14,7 @@ def start():
     message('Press any key to start', lobsterS, 50)
 
     gear = pygame.image.load(r'Images\gear.png')
-    gearRect = gear.get_rect(topright = (dispWD - 3, 3))
+    gearRect = gear.get_rect(topright=(dispWD - 3, 3))
     display.blit(gear, gearRect)
 
     pygame.display.update()

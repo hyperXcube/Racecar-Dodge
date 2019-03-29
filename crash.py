@@ -3,6 +3,7 @@ from functions import *
 from constants import *
 
 # Crash Page
+# ? Is it possible to combine this function with pause()
 
 def crash(score):
     if score > shelf['record']:
