@@ -18,7 +18,7 @@ def start():
     display.blit(gear, gearRect)
 
     pygame.display.update()
-
+    
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -38,4 +38,5 @@ if 'record' not in shelf.keys():
     shelf['record'] = 0
     shelf['rectColor'] = black
 
-start()
+if __name__ == '__main__':
+    start()

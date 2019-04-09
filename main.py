@@ -1,8 +1,13 @@
 import pygame, random
+from pygame.sprite import Sprite #? Use for later?
 from crash import crash
 from pause import pause
 from functions import end
 from constants import *
+
+#? class Block(Sprite):
+#?     def __init__(self, y):
+#?         Sprite.__init__(self)
 
 # Main Game loop
 
@@ -19,9 +24,10 @@ def main():
 
     while True:
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
+            if event.type == pygame.QUIT: 
                 end()
             elif event.type == pygame.KEYDOWN:
+                #? Maybe find some way to create a switch statement?
                 if event.key == pygame.K_LEFT:
                     keys['left'][0] = True
                 elif event.key == pygame.K_a:
