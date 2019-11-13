@@ -1,8 +1,8 @@
 from cx_Freeze import setup, Executable
 from os import environ
 
-environ['TCL_LIBRARY'] = r'C:\Users\Shaunak.Warty22\AppData\Local\Programs\Python\Python37-32\tcl\tcl8.6'
-environ['TK_LIBRARY'] = r'C:\Users\Shaunak.Warty22\AppData\Local\Programs\Python\Python37-32\tcl\tk8.6'
+environ['TCL_LIBRARY'] = r'C:\Users\Shaunak.Warty22\AppData\Local\Programs\Python\Python37\tcl\tcl8.6'
+environ['TK_LIBRARY'] = r'C:\Users\Shaunak.Warty22\AppData\Local\Programs\Python\Python37\tcl\tk8.6'
 
 options = {'packages': ['pygame', 'dbm'],
            'include_files': ['Fonts', 'Images', 'constants.py', 'crash.py', 'functions.py', 'main.py', 'settings.py']}
